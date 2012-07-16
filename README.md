@@ -29,16 +29,16 @@ $ hockey apps:list
 ### List of Devices
 
 ```sh
-$ hockey devices:list
+$ hockey devices:list APP_ID
 ```
 
 If you only want devices which are not in your current provisioning profile, add "unprovisioned":
 
 ```sh
-$ hockey devices:list unprovisioned
+$ hockey devices:list APP_ID unprovisioned
 ```
 
-### Loop of Devices and Add to Provisioning Portal
+### Loop Over Devices and Add to Provisioning Portal
 
 This works only if you have already set up cupertino:
 
@@ -50,7 +50,7 @@ $ ios login
 Then you can show all device (or all unprovisioned devices, see above) and add them to the portal:
 
 ```sh
-$ hockey devices:loop
+$ hockey devices:loop APP_ID
 ```
 
 Finally edit your profile:
@@ -63,6 +63,8 @@ $ ios profiles:manage:devices distribution
 
 - Download profiles from the Provisioning Portal
 - Upload modified profiles to HockeyApp
+- Token management
+- Some error handling
 
 ## Contact
 

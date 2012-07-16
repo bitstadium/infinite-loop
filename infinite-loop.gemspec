@@ -5,8 +5,8 @@ require "infinite"
 Gem::Specification.new do |gem|
   gem.authors       = ["Thomas Dohmke"]
   gem.email         = ["thomas@dohmke.de"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.description   = "A command-line interface for HockeyApp"
+  gem.summary       = "Infinite Loop"
   gem.homepage      = ""
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
