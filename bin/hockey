@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'commander/import'
+require 'terminal-table'
+require 'term/ansicolor'
+require 'netrc'
+
+require 'infinite'
+
+HighLine.track_eof = false # Fix for built-in Ruby
+
+program :version, Infinite::VERSION
+program :description, 'A command-line interface for HockeyApp'
+
+program :help, 'Author', 'Thomas Dohmke <thomas@hockeyapp.net>'
+program :help, 'Website', 'http://hockeyapp.net'
+program :help_formatter, :compact
+
+default_command :help
+
+require 'infinite/loop'
