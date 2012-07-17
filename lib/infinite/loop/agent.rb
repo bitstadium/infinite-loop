@@ -19,7 +19,7 @@ module Infinite
       end
 
       def list_devices(app_id, unprovisioned = nil)
-        response = RestClient.get "#{BASE_URL}app/#{app_id}/devices?unprovisioned=#{unprovisioned.to_s == "unprovisioned" ? 1 : 0}", {"X-HockeyAppToken" => @token }
+        response = RestClient.get "#{BASE_URL}apps/#{app_id}/devices?unprovisioned=#{unprovisioned.to_s == "unprovisioned" ? 1 : 0}", {"X-HockeyAppToken" => @token }
         devices = JSON.parse(response)["devices"]
         devices
       end
