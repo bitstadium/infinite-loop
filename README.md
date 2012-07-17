@@ -43,7 +43,7 @@ $ hockey devices:list APP_ID unprovisioned
 This works only if you have already set up cupertino:
 
 ```sh
-$ gem install infinite-loop
+$ gem install cupertino
 $ ios login
 ```
 
