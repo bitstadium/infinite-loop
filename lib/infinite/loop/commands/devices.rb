@@ -7,18 +7,27 @@ command :'devices:list' do |c|
     say_error "Missing arguments, expected App ID" and abort if args.nil? or args.empty?
 
     devices = try { agent.list_devices(args[0], (args.length > 1 ? args[1] : nil)) }
-    title = "Listing Devices"
-    table = Terminal::Table.new :title => title do |t|
-      t << ["Device Name", "Device Identifier"]
-      t.add_separator
-      devices.compact.each do |device|
-        t << [
-          device["name"],
-          device["udid"]
-        ]
+
+    if args.last == "hash" 
+      h = []
+      devices.each do |device|
+        h << "\'#{device["name"]}\' => \'#{device["udid"]}\'"
       end
-      puts t
-    end
+      puts h.join(",\n")
+    else
+			title = "Listing Devices"
+			table = Terminal::Table.new :title => title do |t|
+				t << ["Device Name", "Device Identifier"]
+				t.add_separator
+				devices.compact.each do |device|
+					t << [
+						device["name"],
+						device["udid"]
+					]
+				end
+				puts t
+			end
+		end
   end
 end
 
@@ -28,6 +37,7 @@ command :'devices:loop' do |c|
   c.description = ''
 
   c.action do |args, options|
+    puts(args)
     say_error "Missing arguments, expected App ID" and abort if args.nil? or args.empty?
 
     devices = try { agent.list_devices(args[0], (args.length > 1 ? args[1] : nil)) }

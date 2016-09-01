@@ -40,7 +40,9 @@ $ hockey devices:list APP_ID unprovisioned
 
 ### Loop Over Devices and Add to Provisioning Portal
 
-This works only if you have already set up cupertino:
+Option one: use cupertino
+
+Here's how you set up cupertino:
 
 ```sh
 $ gem install cupertino
@@ -57,6 +59,28 @@ Finally edit your profile:
 
 ```sh
 $ ios profiles:manage:devices distribution
+```
+
+Option two: If you're using fastlane
+
+Add a lane to your Fastfile
+
+```
+  desc "Register Devices from Hockey"
+  lane :register_devices do
+    devices = `hockey devices:list ${HOCKEY_APP_ID} unprovisioned hash`
+    register_devices(
+      devices: eval(devices)
+    )
+    sigh(adhoc: true, force: true)
+  end
+```
+
+Call fastlane like this:
+
+```sh
+$ fastlane register_devices HOCKEY_APP_ID=APP_ID
+
 ```
 
 ## TODO
