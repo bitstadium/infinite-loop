@@ -9,11 +9,11 @@ command :'devices:list' do |c|
     devices = try { agent.list_devices(args[0], (args.length > 1 ? args[1] : nil)) }
 
     if args.last == "hash" 
-      h = []
+      h = {}
       devices.each do |device|
-        h << "\'#{device["name"]}\' => \'#{device["udid"]}\'"
+        h[device["name"]] = device["udid"]
       end
-      puts h.join(",\n")
+      puts h
     else
 			title = "Listing Devices"
 			table = Terminal::Table.new :title => title do |t|
